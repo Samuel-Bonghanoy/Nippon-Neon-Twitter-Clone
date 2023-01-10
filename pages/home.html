@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../styles/home.css" />
+    <link rel="stylesheet" href="../styles/general.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Mukta:wght@200;300;400;500;600;700;800&family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,500&display=swap"
+      rel="stylesheet"
+    />
+    <script type="module" defer src="../script/home.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="grid">
+      <!-- NAV BAR -->
+      <nav class="navbar">
+        <img
+          class="logo"
+          src="../images/kitsune-logo.png"
+          width="500"
+          height="500"
+        />
+        <div class="flex nav-icon">
+          <ion-icon name="home-outline"></ion-icon>
+          <p class="nav-text">Home</p>
+        </div>
+        <div class="flex nav-icon">
+          <ion-icon name="mail-outline"></ion-icon>
+          <p class="nav-text">Messages</p>
+        </div>
+        <div class="flex nav-icon">
+          <ion-icon name="notifications-outline"></ion-icon>
+          <p class="nav-text">Notifications</p>
+        </div>
+        <div class="flex nav-icon">
+          <ion-icon name="person-circle-outline"></ion-icon>
+          <p class="nav-text">Profile</p>
+        </div>
+        <div class="flex nav-icon">
+          <ion-icon name="settings-outline"></ion-icon>
+          <span class="nav-text">Settings</span>
+        </div>
+        <div class="nav-bottom">
+          <button class="write">Write</button>
+          <div class="profile">
+            <img
+              class="nav-user user"
+              src="../images/user1.jpg"
+              width="75"
+              height="75"
+            />
+            <div class="nav-names">
+              <p class="username">sethonne</p>
+              <p class="id">#69420</p>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <!-- MAIN -->
+      <main class="main-section">
+        <!-- MAIN NAV -->
+        <div class="main-nav">
+          <p class="main-nav-text">Home</p>
+          <ion-icon name="color-wand-outline"></ion-icon>
+        </div>
+        <!-- POSTING -->
+        <div class="posting">
+          <div class="posting-top">
+            <img
+              class="user"
+              src="../images/user1.jpg"
+              width="50"
+              height="50"
+            />
+            <!-- publicty container -->
+            <div class="posting-right">
+              <div class="publicity">
+                <p class="btn-text">Everyone</p>
+                <ion-icon name="chevron-down-outline"></ion-icon>
+              </div>
+
+              <!-- input text field -->
+              <textarea
+                class="form post"
+                name="post"
+                placeholder="What do you want to write about?"
+              >
+              </textarea>
+              <!-- <textarea id="w3review" name="w3review" rows="4" cols="50">
+                At w3schools.com you will learn how to make a website. They offer free tutorials in all web development technologies.
+                </textarea
+              > -->
+
+              <!-- POST OPTIONS -->
+              <div class="post-bottom">
+                <div class="post-options">
+                  <ion-icon name="earth-outline"></ion-icon>
+                  <p class="btn-text">Anyone can reply</p>
+                  <ion-icon name="chevron-down-outline"></ion-icon>
+                </div>
+                <!-- line -->
+                <!-- <hr /> -->
+                <button class="post-btn">Post</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- POSTS -->
+        <div class="post-body">
+          <img class="user" src="../images/user1.jpg" width="50" height="50" />
+          <div class="post-text">
+            <div class="user-handles">
+              <div class="names">
+                <p class="username-post">sethonne</p>
+                <p class="gray">#69420</p>
+              </div>
+              <p class="space gray">31 mins</p>
+            </div>
+            <p class="user-post-text">
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quaerat
+              mollitia explicabo sequi cum doloribus deserunt facere architecto
+              laudantium ipsa ex, ipsum nesciunt quisquam quod dolore commodi
+              earum corrupti sint eaque!
+            </p>
+            <div class="post-icons">
+              <ion-icon name="heart-outline"></ion-icon>
+              <ion-icon name="chatbubble-outline"></ion-icon>
+              <ion-icon name="share-social-outline"></ion-icon>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="post-body">
+          <img class="user" src="../images/user1.jpg" width="50" height="50" />
+          <div class="post-text">
+            <div class="user-handles">
+              <div class="names">
+                <p class="username-post">sethonne</p>
+                <p class="gray">#69420</p>
+              </div>
+              <p class="space gray">31 mins</p>
+            </div>
+            <p class="user-post-text">
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quaerat
+              mollitia explicabo sequi cum doloribus deserunt facere architecto
+              laudantium ipsa ex, ipsum nesciunt quisquam quod dolore commodi
+              earum corrupti sint eaque!
+            </p>
+            <div class="post-icons">
+              <ion-icon name="heart-outline"></ion-icon>
+              <ion-icon name="chatbubble-outline"></ion-icon>
+              <ion-icon name="share-social-outline"></ion-icon>
+            </div>
+          </div>
+        </div> -->
+        <!-- END OF POST -->
+      </main>
+      <aside class="contacts-main">
+        <div class="search-bar">
+          <ion-icon name="search-outline"></ion-icon>
+          <input
+            type="text"
+            class="form search"
+            name="username"
+            placeholder="Search"
+          />
+        </div>
+        <h3 class="contacts-title">Contacts</h3>
+        <div class="contacts">
+          <div class="contact-tab">
+            <img
+              class="user"
+              src="../images/default.png"
+              width="50"
+              height="50"
+            />
+            <div class="contact-name">
+              <p>Username</p>
+            </div>
+          </div>
+          <div class="contact-tab">
+            <img
+              class="user"
+              src="../images/default.png"
+              width="50"
+              height="50"
+            />
+            <div class="contact-name">
+              <p>Username</p>
+            </div>
+          </div>
+          <div class="contact-tab">
+            <img
+              class="user"
+              src="../images/default.png"
+              width="50"
+              height="50"
+            />
+            <div class="contact-name">
+              <p>Username</p>
+            </div>
+          </div>
+          <div class="contact-tab">
+            <img
+              class="user"
+              src="../images/default.png"
+              width="50"
+              height="50"
+            />
+            <div class="contact-name">
+              <p>Username</p>
+            </div>
+          </div>
+          <div class="contact-tab">
+            <img
+              class="user"
+              src="../images/default.png"
+              width="50"
+              height="50"
+            />
+            <div class="contact-name">
+              <p>Username</p>
+            </div>
+          </div>
+        </div>
+        <h3 class="contacts-title">Messages</h3>
+        <div class="message">
+          <img class="user" src="../images/user3.jpg" width="50" height="50" />
+          <div class="post-text">
+            <div class="user-handles">
+              <div class="names">
+                <p class="username-post">Elon Musk</p>
+                <p class="gray">#69420</p>
+              </div>
+              <p class="space gray">1 min</p>
+            </div>
+            <p class="user-post-text">
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quaerat
+            </p>
+          </div>
+        </div>
+        <div class="message">
+          <img class="user" src="../images/user2.jpg" width="50" height="50" />
+          <div class="post-text">
+            <div class="user-handles">
+              <div class="names">
+                <p class="username-post">Lebron James</p>
+                <p class="gray">#69420</p>
+              </div>
+              <p class="space gray">31 mins</p>
+            </div>
+            <p class="user-post-text">
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quaerat
+            </p>
+          </div>
+        </div>
+        <div class="message">
+          <img
+            class="user"
+            src="../images/default.png"
+            width="50"
+            height="50"
+          />
+          <div class="post-text">
+            <div class="user-handles">
+              <div class="names">
+                <p class="username-post">Username</p>
+                <p class="gray">#69420</p>
+              </div>
+              <p class="space gray">31 mins</p>
+            </div>
+            <p class="user-post-text">
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quaerat
+            </p>
+          </div>
+        </div>
+        <div class="message">
+          <img
+            class="user"
+            src="../images/default.png"
+            width="50"
+            height="50"
+          />
+          <div class="post-text">
+            <div class="user-handles">
+              <div class="names">
+                <p class="username-post">Username</p>
+                <p class="gray">#69420</p>
+              </div>
+              <p class="space gray">31 mins</p>
+            </div>
+            <p class="user-post-text">
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quaerat
+            </p>
+          </div>
+        </div>
+        <div class="message">
+          <img
+            class="user"
+            src="../images/default.png"
+            width="50"
+            height="50"
+          />
+          <div class="post-text">
+            <div class="user-handles">
+              <div class="names">
+                <p class="username-post">Username</p>
+                <p class="gray">#69420</p>
+              </div>
+              <p class="space gray">31 mins</p>
+            </div>
+            <p class="user-post-text">
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quaerat
+            </p>
+          </div>
+        </div>
+      </aside>
+    </div>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
+  </body>
+</html>
