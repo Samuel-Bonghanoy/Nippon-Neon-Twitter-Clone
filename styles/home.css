@@ -228,6 +228,7 @@ main::-webkit-scrollbar {
 
 .post-body {
   display: flex;
+  /* flex-direction: column; */
   gap: 1.5rem;
   padding-top: 3rem;
   padding-bottom: 2rem;
@@ -322,6 +323,7 @@ aside::-webkit-scrollbar {
 
 .contact-name {
   padding-top: 0.5rem;
+  text-align: center;
 }
 
 .search {
