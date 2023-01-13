@@ -23,3 +23,7 @@ textarea:focus {
   border: none;
   outline: none;
 }
+
+.inactive {
+  font-weight: 500;
+}

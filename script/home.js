@@ -159,14 +159,14 @@ const generateMessages = async function () {
   <div class="post-text">
     <div class="user-handles">
       <div class="names">
-        <p class="username-post">${
+        <p class="username-post inactive">${
           userData.name.length > 15 ? userData.name.slice(0, 14) : userData.name
         }</p>
         <p class="gray">#${userData.address.zipcode.slice(0, 5)}</p>
       </div>
       <p class="space gray">${i} ${i === 1 ? "hour ago" : "hours ago"}</p>
     </div>
-    <p class="user-post-text">
+    <p class="user-post-text gray">
       Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quaerat
     </p>
   </div>
