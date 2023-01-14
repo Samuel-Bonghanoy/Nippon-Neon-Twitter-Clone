@@ -75,7 +75,7 @@ const getPostUser = async function (idNumber) {
     `https://jsonplaceholder.typicode.com/users/${idNumber}`
   )
     .then((response) => {
-      if (!response.ok) throw new Error(`Post not found`);
+      if (!response.ok) throw new Error(`User not found`);
       return response.json();
     })
     .then((data) => {
