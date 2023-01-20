@@ -7,6 +7,8 @@ const textArea = document.querySelector("textarea");
 textArea.value = "";
 const contacts = document.querySelector(".contacts");
 const messages = document.querySelector("aside");
+let hearts = document.querySelectorAll(".heart-container");
+const comments = document.querySelectorAll(".comment");
 
 const autoresize = function () {
   this.style.height = "auto";
@@ -30,20 +32,65 @@ const addPost = function (postBody) {
       ${postBody}
     </p>
     <div class="post-icons">
-      <ion-icon name="heart-outline"></ion-icon>
-      <ion-icon name="chatbubble-outline"></ion-icon>
-      <ion-icon name="share-social-outline"></ion-icon>
-    </div>
+                <div class="heart-container">
+                  <ion-icon
+                    class="heart"
+                    data-number-likes="0"
+                    name="heart-outline"
+                  ></ion-icon>
+                  <span class="number-likes"></span>
+                </div>
+                <ion-icon
+                  class="comment"
+                  data-number-comments="0"
+                  name="chatbubble-outline"
+                ></ion-icon>
+                <ion-icon name="share-social-outline"></ion-icon>
+              </div>
   </div>
 </div>`;
 
   posts.insertAdjacentHTML("afterbegin", html);
+  let hearts = document.querySelectorAll(".heart-container");
+  hearts.forEach((heart) =>
+    heart.addEventListener(
+      "click",
+      function (e) {
+        const heartIcon = heart.firstElementChild;
+        const name = heartIcon.getAttribute("name");
+        const numberLikes = heart.lastElementChild;
+
+        if (name === "heart") {
+          heartIcon.setAttribute("name", "heart-outline");
+          if (Number(heartIcon.dataset.numberLikes) === 0)
+            numberLikes.textContent = "";
+          else
+            numberLikes.textContent = `${
+              Number(heartIcon.dataset.numberLikes) - 1
+            }`;
+        } else {
+          heartIcon.setAttribute("name", "heart");
+          console.log(heartIcon);
+          numberLikes.textContent = `${
+            Number(heartIcon.dataset.numberLikes) + 1
+          }`;
+        }
+      },
+      false
+    )
+  );
+};
+
+const containsAlphanumericSymbol = function (str) {
+  return Boolean(str.includes(/^[A-Za-z0-9]*$/));
 };
 
 postBtn.addEventListener("click", function (e) {
   e.preventDefault();
 
   const postBody = textArea.value;
+
+  if (postBody === " ") return;
 
   addPost(postBody);
 
@@ -105,15 +152,54 @@ const generatePosts = async function (usersNumber) {
         ${postData.body}
       </p>
       <div class="post-icons">
-        <ion-icon name="heart-outline"></ion-icon>
-        <ion-icon name="chatbubble-outline"></ion-icon>
-        <ion-icon name="share-social-outline"></ion-icon>
-      </div>
+                <div class="heart-container">
+                  <ion-icon
+                    class="heart"
+                    data-number-likes="0"
+                    name="heart-outline"
+                  ></ion-icon>
+                  <span class="number-likes"></span>
+                </div>
+                <ion-icon
+                  class="comment"
+                  data-number-comments="0"
+                  name="chatbubble-outline"
+                ></ion-icon>
+                <ion-icon name="share-social-outline"></ion-icon>
+              </div>
     </div>
   </div>`;
 
     posts.insertAdjacentHTML("beforeend", html);
   }
+  let hearts = document.querySelectorAll(".heart-container");
+  hearts.forEach((heart) =>
+    heart.addEventListener(
+      "click",
+      function (e) {
+        const heartIcon = heart.firstElementChild;
+        const name = heartIcon.getAttribute("name");
+        const numberLikes = heart.lastElementChild;
+
+        if (name === "heart") {
+          heartIcon.setAttribute("name", "heart-outline");
+          if (Number(heartIcon.dataset.numberLikes) === 0)
+            numberLikes.textContent = "";
+          else
+            numberLikes.textContent = `${
+              Number(heartIcon.dataset.numberLikes) - 1
+            }`;
+        } else {
+          heartIcon.setAttribute("name", "heart");
+          console.log(heartIcon);
+          numberLikes.textContent = `${
+            Number(heartIcon.dataset.numberLikes) + 1
+          }`;
+        }
+      },
+      false
+    )
+  );
 };
 
 generatePosts(10);
@@ -177,3 +263,14 @@ const generateMessages = async function () {
 };
 
 generateMessages();
+
+// const heartsFill = function (heart) {
+//   const heartIcon = heart.firstElementChild;
+//   heartIcon.setAttribute("name", "heart");
+
+//   console.log(heartIcon);
+
+//   const numberLikes = heart.lastElementChild;
+
+//   numberLikes.textContent = `${Number(heartIcon.dataset.numberLikes) + 1}`;
+// };

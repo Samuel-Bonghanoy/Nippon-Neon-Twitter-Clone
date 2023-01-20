@@ -256,6 +256,17 @@ main::-webkit-scrollbar {
   align-items: center;
 }
 
+.heart {
+  fill: #ff5757;
+  transition: all 1s;
+}
+
+.heart-container {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
 .gray {
   color: #6f7781;
 }
