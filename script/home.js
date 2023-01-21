@@ -8,7 +8,15 @@ textArea.value = "";
 const contacts = document.querySelector(".contacts");
 const messages = document.querySelector("aside");
 let hearts = document.querySelectorAll(".heart-container");
-const comments = document.querySelectorAll(".comment");
+let comments = document.querySelectorAll(".comment");
+const profileContainer = document.querySelector(".prof-pic");
+const postBody = document.querySelector(".post-body");
+const grid = document.querySelector(".grid");
+const body = document.querySelector("body");
+let commentTarget;
+let commentTextArea;
+let commentBody;
+let postBodyText;
 
 const autoresize = function () {
   this.style.height = "auto";
@@ -18,8 +26,16 @@ const autoresize = function () {
 textarea.addEventListener("input", autoresize, false);
 
 const addPost = function (postBody) {
-  const html = `<div class="post-body">
-  <img class="user" src="../images/user1.jpg" width="50" height="50" />
+  const html = `<div class="full">
+  <div class="post-body">
+  <div class="prof-pic">
+                <img
+                  class="user"
+                  src="../images/user1.jpg"
+                  width="50"
+                  height="50"
+                />
+              </div>
   <div class="post-text">
     <div class="user-handles">
       <div class="names">
@@ -48,37 +64,10 @@ const addPost = function (postBody) {
                 <ion-icon name="share-social-outline"></ion-icon>
               </div>
   </div>
+  </div>
 </div>`;
 
   posts.insertAdjacentHTML("afterbegin", html);
-  let hearts = document.querySelectorAll(".heart-container");
-  hearts.forEach((heart) =>
-    heart.addEventListener(
-      "click",
-      function (e) {
-        const heartIcon = heart.firstElementChild;
-        const name = heartIcon.getAttribute("name");
-        const numberLikes = heart.lastElementChild;
-
-        if (name === "heart") {
-          heartIcon.setAttribute("name", "heart-outline");
-          if (Number(heartIcon.dataset.numberLikes) === 0)
-            numberLikes.textContent = "";
-          else
-            numberLikes.textContent = `${
-              Number(heartIcon.dataset.numberLikes) - 1
-            }`;
-        } else {
-          heartIcon.setAttribute("name", "heart");
-          console.log(heartIcon);
-          numberLikes.textContent = `${
-            Number(heartIcon.dataset.numberLikes) + 1
-          }`;
-        }
-      },
-      false
-    )
-  );
 };
 
 const containsAlphanumericSymbol = function (str) {
@@ -88,11 +77,37 @@ const containsAlphanumericSymbol = function (str) {
 postBtn.addEventListener("click", function (e) {
   e.preventDefault();
 
-  const postBody = textArea.value;
+  postBodyText = textArea.value;
+  const postBody = postBodyText;
 
   if (postBody === " ") return;
 
   addPost(postBody);
+
+  let commentAdded = document.querySelector(".comment");
+  commentAdded.addEventListener("click", function (e) {
+    displayModal(e);
+  });
+  let heart = document.querySelector(".heart-container");
+  heart.addEventListener("click", function (e) {
+    const heartIcon = heart.firstElementChild;
+    const name = heartIcon.getAttribute("name");
+    const numberLikes = heart.lastElementChild;
+
+    if (name === "heart") {
+      heartIcon.setAttribute("name", "heart-outline");
+      if (Number(heartIcon.dataset.numberLikes) === 0)
+        numberLikes.textContent = "";
+      else
+        numberLikes.textContent = `${
+          Number(heartIcon.dataset.numberLikes) - 1
+        }`;
+    } else {
+      heartIcon.setAttribute("name", "heart");
+      // console.log(heartIcon);
+      numberLikes.textContent = `${Number(heartIcon.dataset.numberLikes) + 1}`;
+    }
+  });
 
   textArea.value = "";
 });
@@ -138,8 +153,16 @@ const generatePosts = async function (usersNumber) {
     let postData = await getPostBody(i);
     let userData = await getPostUser(i);
 
-    let html = `<div class="post-body">
-    <img class="user" src="../images/default.png" width="50" height="50" />
+    let html = `<div class="full">
+    <div class="post-body">
+     <div class="prof-pic">
+                <img
+                  class="user"
+                  src="../images/default.png"
+                  width="50"
+                  height="50"
+                />
+              </div>
     <div class="post-text">
       <div class="user-handles">
         <div class="names">
@@ -168,11 +191,13 @@ const generatePosts = async function (usersNumber) {
                 <ion-icon name="share-social-outline"></ion-icon>
               </div>
     </div>
+    </div>
   </div>`;
 
     posts.insertAdjacentHTML("beforeend", html);
   }
   let hearts = document.querySelectorAll(".heart-container");
+  // console.log(hearts);
   hearts.forEach((heart) =>
     heart.addEventListener(
       "click",
@@ -191,7 +216,7 @@ const generatePosts = async function (usersNumber) {
             }`;
         } else {
           heartIcon.setAttribute("name", "heart");
-          console.log(heartIcon);
+          // console.log(heartIcon);
           numberLikes.textContent = `${
             Number(heartIcon.dataset.numberLikes) + 1
           }`;
@@ -199,6 +224,14 @@ const generatePosts = async function (usersNumber) {
       },
       false
     )
+  );
+
+  comments = document.querySelectorAll(".comment");
+  comments.forEach((comment) =>
+    comment.addEventListener("click", function (e) {
+      console.log("hi");
+      displayModal(e);
+    })
   );
 };
 
@@ -264,13 +297,152 @@ const generateMessages = async function () {
 
 generateMessages();
 
-// const heartsFill = function (heart) {
-//   const heartIcon = heart.firstElementChild;
-//   heartIcon.setAttribute("name", "heart");
+const displayModal = function (e) {
+  commentTarget = e.target;
+  let modal = `
+    <section class="hidden modal">
+      <button class="close-modal">&times;</button>
+      <div class="post-body2 comment-text">
+        <div class="comment-prof-pic prof-pic">
+          <img class="user" src="../images/user1.jpg" width="50" height="50" />
+          <hr class="vertical3" />
+        </div>
+        <div class="post-text comment-textarea">
+          <div class="user-handles">
+            <div class="names">
+              <p class="username-post">sethonne</p>
+              <p class="gray">#69420</p>
+            </div>
+            <p class="space gray">31 mins</p>
+          </div>
+          <p class="user-post-text">
+          I seriously hate Javascript bruh I am actually losing my mind
+          making this project rn please get me out of here hoooooolly
+          </p>
+          <p class="receiver">Replying to <strong>@sethonne</strong></p>
+        </div>
+      </div>
+     
+      <div class="comment-body">
+        <img class="user" src="../images/user1.jpg" width="50" height="50" />
+        <div class="post-text">
+          <textarea
+            class="form post comment-form"
+            name="post"
+            placeholder="Write your reply"
+          >
+          </textarea>
+          <button class="post-btn2">Post</button>
+        </div>
+      </div>
+    </section>`;
 
-//   console.log(heartIcon);
+  let overlay = `<div class="overlay hidden"></div>`;
 
-//   const numberLikes = heart.lastElementChild;
+  grid.insertAdjacentHTML("afterend", overlay);
+  body.insertAdjacentHTML("afterbegin", modal);
 
-//   numberLikes.textContent = `${Number(heartIcon.dataset.numberLikes) + 1}`;
-// };
+  let commentTextArea = document.querySelector(".comment-form");
+  commentTextArea.value = "";
+  // console.log(commentTextArea.value);
+
+  let closeBtn = document.querySelector(".close-modal");
+  closeBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+    document.querySelector(".modal").remove();
+    document.querySelector(".overlay").remove();
+  });
+
+  let postBtn = document.querySelector(".post-btn2");
+  postBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+    commentTextArea = document.querySelector(".comment-form");
+    // console.log(commentTextArea.value);
+    // console.log("hi");
+    addComment(commentTarget, commentTextArea.value);
+    document.querySelector(".modal").remove();
+    document.querySelector(".overlay").remove();
+    hearts.forEach((heart) =>
+      heart.addEventListener(
+        "click",
+        function (e) {
+          const heartIcon = heart.firstElementChild;
+          const name = heartIcon.getAttribute("name");
+          const numberLikes = heart.lastElementChild;
+
+          if (name === "heart") {
+            heartIcon.setAttribute("name", "heart-outline");
+            if (Number(heartIcon.dataset.numberLikes) === 0)
+              numberLikes.textContent = "";
+            else
+              numberLikes.textContent = `${
+                Number(heartIcon.dataset.numberLikes) - 1
+              }`;
+          } else {
+            heartIcon.setAttribute("name", "heart");
+            // console.log(heartIcon);
+            numberLikes.textContent = `${
+              Number(heartIcon.dataset.numberLikes) + 1
+            }`;
+          }
+        },
+        false
+      )
+    );
+  });
+};
+
+const addComment = function (target, commentBody) {
+  target.parentNode.parentNode.parentNode.firstElementChild.innerHTML += `${
+    postBodyText ? '<hr class="vertical3" />' : '<hr class="vertical" />'
+  }`;
+  // console.log(target);
+  // console.log(target.parentNode.parentNode.parentNode.firstElementChild);
+
+  let commentHTML = `<div class="comment-body">
+<img
+  class="user"
+  src="../images/user1.jpg"
+  width="50"
+  height="50"
+/>
+<div class="post-text">
+  <div class="user-handles">
+    <div class="names">
+      <p class="username-post">sethonne</p>
+      <p class="gray">#69420</p>
+    </div>
+    <p class="space gray">Just now</p>
+  </div>
+  <p class="user-post-text">
+    ${commentBody}
+  </p>
+  <div class="post-icons">
+    <div class="heart-container">
+      <ion-icon
+        class="heart"
+        data-number-likes="0"
+        name="heart-outline"
+      ></ion-icon>
+      <span class="number-likes"></span>
+    </div>
+    <ion-icon
+      class="comment"
+      data-number-comments="0"
+      name="chatbubble-outline"
+    ></ion-icon>
+    <ion-icon name="share-social-outline"></ion-icon>
+  </div>
+</div>
+</div>`;
+
+  target.parentNode.parentNode.parentNode.insertAdjacentHTML(
+    "afterend",
+    commentHTML
+  );
+};
+
+const firstComment = document.querySelector(".first-comment");
+firstComment.addEventListener("click", function (e) {
+  displayModal(e);
+});
